@@ -25,10 +25,6 @@ public class CharacterMovement : MonoBehaviour {
 		if (c.gameObject.tag == "Ground")
 			isJumping = true;
 	}
-
-	void Update() {
-		
-	}
 	
 	public void Move(Vector3 dir) {
 		rb.AddForce(transform.InverseTransformDirection(dir) * jumpSpeed);
