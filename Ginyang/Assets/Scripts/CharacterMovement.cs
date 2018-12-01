@@ -5,33 +5,40 @@ using UnityEngine;
 public class CharacterMovement : MonoBehaviour {
 
 	public float speed = 5;
-	public float jumpSpeed = 300;
+	public float jumpSpeed = 15;
 
 	private bool isJumping;
-	private Rigidbody2D rb;
+	private float ground;
 
+	const float g = 2f;
 
 	// Use this for initialization
 	void Start () {
-		rb = GetComponent<Rigidbody2D>();
-	}
-
-	void OnCollisionEnter2D(Collision2D c) {
-		if (c.gameObject.tag == "Ground")
-			isJumping = false;
-	}
-
-	void OnCollisionExit2D(Collision2D c) {
-		if (c.gameObject.tag == "Ground")
-			isJumping = true;
+		ground = transform.position.y;
 	}
 	
 	public void Move(Vector3 dir) {
-		rb.AddForce(transform.InverseTransformDirection(dir) * jumpSpeed);
+		transform.Translate(dir * speed * Time.deltaTime);
 	}
 
-	public void Jump () {
-		if (!isJumping)
-			rb.AddForce(transform.InverseTransformDirection(Vector3.up) * jumpSpeed);
+	IEnumerator Jump () {
+		if (isJumping == true)
+			yield break;
+
+		isJumping = true;
+
+		float f = jumpSpeed;
+
+		while(transform.position.y >= ground) {
+			transform.Translate(Vector3.up * f * Time.deltaTime);
+			f -= g;
+
+			yield return null;
+		}
+
+		isJumping = false;
+
+		if (transform.position.y < ground)
+				transform.Translate(Vector3.up * (ground-transform.position.y));
 	}
 }
