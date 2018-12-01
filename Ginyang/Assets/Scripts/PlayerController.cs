@@ -17,14 +17,20 @@ public class PlayerController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetKey(leftKey))
+		if (Input.GetKeyDown(leftKey))
 			cm.Move(Vector3.left);
 
-		if (Input.GetKey(rightKey))
+		//if (Input.GetKeyUp(leftKey))
+		//	cm.Move(-Vector3.left);
+
+		if (Input.GetKeyDown(rightKey))
 			cm.Move(Vector3.right);
 
+		//if (Input.GetKeyUp(rightKey))
+		//	cm.Move(-Vector3.right);
+
 		if (Input.GetKeyDown(jumpKey))
-			cm.StartCoroutine("Jump");
+			cm.Jump();
 
 	}
 }
