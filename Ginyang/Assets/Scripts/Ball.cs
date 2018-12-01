@@ -7,7 +7,7 @@ public class Ball : MonoBehaviour {
 	// Use this for initialization
 	void OnCollisionEnter2D (Collision2D c) {
 		Rigidbody2D rb = GetComponent<Rigidbody2D>();
-		rb.AddForce(c.contacts[0].normal * 100);
+		rb.AddForce(c.contacts[0].normal * 400);
 
 		Debug.Log(rb.velocity);
 	}

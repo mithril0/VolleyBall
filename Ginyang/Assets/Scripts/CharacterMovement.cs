@@ -30,15 +30,17 @@ public class CharacterMovement : MonoBehaviour {
 		float f = jumpSpeed;
 
 		while(transform.position.y >= ground) {
-			transform.Translate(Vector3.up * f * Time.deltaTime);
+			float y = transform.position.y + f * Time.deltaTime;
 			f -= g;
+
+			transform.Translate((Mathf.Max(y, ground) - transform.position.y) * Vector3.up);
+
+			if(y < ground)
+				break;
 
 			yield return null;
 		}
 
 		isJumping = false;
-
-		if (transform.position.y < ground)
-				transform.Translate(Vector3.up * (ground-transform.position.y));
 	}
 }
