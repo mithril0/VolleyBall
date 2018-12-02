@@ -18,7 +18,7 @@ public class CharacterMovement : MonoBehaviour {
 	}
 	
 	public void Move(Vector3 dir) {
-		transform.Translate(dir * speed * Time.deltaTime);
+		transform.Translate(transform.InverseTransformDirection(dir) * speed * Time.deltaTime);
 	}
 
 	IEnumerator Jump () {
