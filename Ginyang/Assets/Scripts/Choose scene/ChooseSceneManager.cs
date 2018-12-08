@@ -7,6 +7,7 @@ public class ChooseSceneManager : MonoBehaviour {
     public bool pick1=false;
     public bool pick2=false;
     public int second;
+    public AudioClip bgm;
     public bool notai = false;
     public GameObject AI;
     public GameObject P1;
@@ -16,10 +17,13 @@ public class ChooseSceneManager : MonoBehaviour {
     public Caractericon Cat;
     public Caractericon Kai;
     public Caractericon Pho;
-    GameObject temp;
+    private GameObject temp;
     public Animator test;
+    private AudioSource source;
+
     // Use this for initialization
     void Start () {
+        source = GetComponent<AudioSource>();
         //AI = GameObject.Find("AI");
         P1 = GameObject.Find("1P");
         p1 = P1.GetComponent<Bigicon>();
@@ -42,14 +46,16 @@ public class ChooseSceneManager : MonoBehaviour {
                 pick1 = true;
                 test = P1.transform.GetChild(first - 1).GetComponent<Animator>();
                 test.SetTrigger("pick");
+                source.Play(0);
                 
             }
         }
-        if (Input.GetKeyDown(KeyCode.KeypadEnter))
+        if (Input.GetKeyDown(KeyCode.RightShift))
         {
             if (pick2 == false)
             {
                 pick2 = true;
+                source.Play(0);
                 P2.transform.GetChild(second - 1).GetComponent<Animator>().SetTrigger("pick");
             }
         }
