@@ -4,7 +4,8 @@ using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class MoveScene : MonoBehaviour {
-
+    static int Player1;
+    static int Player2;
 	// Use this for initialization
 	void Start () {
 		
