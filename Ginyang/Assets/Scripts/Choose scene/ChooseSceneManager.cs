@@ -64,7 +64,7 @@ public class ChooseSceneManager : MonoBehaviour {
         {
             if (notai == false)
             {
-                P2.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("bg_select_2P");
+                P2.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("caractericon/bg_select_2P");
                 notai = true;
                 //AI.SetActive(false);
                 P2.SetActive(true);
