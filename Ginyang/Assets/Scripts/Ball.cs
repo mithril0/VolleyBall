@@ -13,7 +13,7 @@ public class Ball : MonoBehaviour {
 		Rigidbody2D rb = GetComponent<Rigidbody2D>();
 		rb.AddForce(c.contacts[0].normal * 400);
         source.Play(0);
-
+    
         Debug.Log(rb.velocity);
 	}
 }
