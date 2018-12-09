@@ -23,9 +23,6 @@ public class PlayerController : MonoBehaviour {
 		if (Input.GetKey(rightKey))
 			cm.Move(Vector3.right);
 
-		if (Input.GetKeyUp(leftKey) || Input.GetKeyUp(rightKey))
-			cm.StopMoving();
-
 		if (Input.GetKeyDown(jumpKey))
 			cm.StartCoroutine("Jump");
 

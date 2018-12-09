@@ -10,6 +10,7 @@ public class CharacterMovement : MonoBehaviour {
 	private bool isJumping;
 	private float ground;
 	private Animator ani;
+	private float pos_x;
 
 	const float g = 2f;
 
@@ -17,16 +18,18 @@ public class CharacterMovement : MonoBehaviour {
 	void Start () {
 		ground = transform.position.y;
 		ani = GetComponent<Animator>();
+		pos_x = transform.position.x;
+	}
+
+	void Update() {
+		if(ani.GetInteger("State") == 1 && pos_x != transform.position.x)
+			ani.SetInteger("State", 0);
+		pos_x = transform.position.x;
 	}
 	
 	public void Move(Vector3 dir) {
 		transform.Translate(transform.InverseTransformDirection(dir) * speed * Time.deltaTime);
 		ani.SetInteger("State", 1);
-	}
-
-	public void StopMoving() {
-		if(ani.GetInteger("State") == 1)
-			ani.SetInteger("State", 0);
 	}
 
 	IEnumerator Jump () {
