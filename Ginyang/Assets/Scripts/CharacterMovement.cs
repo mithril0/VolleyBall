@@ -9,16 +9,24 @@ public class CharacterMovement : MonoBehaviour {
 
 	private bool isJumping;
 	private float ground;
+	private Animator ani;
 
 	const float g = 2f;
 
 	// Use this for initialization
 	void Start () {
 		ground = transform.position.y;
+		ani = GetComponent<Animator>();
 	}
 	
 	public void Move(Vector3 dir) {
 		transform.Translate(transform.InverseTransformDirection(dir) * speed * Time.deltaTime);
+		ani.SetInteger("State", 1);
+	}
+
+	public void StopMoving() {
+		if(ani.GetInteger("State") == 1)
+			ani.SetInteger("State", 0);
 	}
 
 	IEnumerator Jump () {
@@ -26,6 +34,7 @@ public class CharacterMovement : MonoBehaviour {
 			yield break;
 
 		isJumping = true;
+		ani.SetInteger("State", 2);
 
 		float f = jumpSpeed;
 
@@ -41,6 +50,7 @@ public class CharacterMovement : MonoBehaviour {
 			yield return null;
 		}
 
+		ani.SetInteger("State", 0);
 		isJumping = false;
 	}
 }
