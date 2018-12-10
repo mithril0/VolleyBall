@@ -41,16 +41,18 @@ public class Playscenemanager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        //if (enddelay > 0)
-        //{
-         //   enddelay -= Time.deltaTime;
-         //   if (enddelay < 0)
-         //   {
-         //       rb.constraints = RigidbodyConstraints2D.FreezePosition;
-         //       Time.timeScale = 1;
-          //      Ball.transform.position = prepos;
-          //  }
-        //}
+        if (enddelay > 0)
+        {
+           enddelay -= Time.deltaTime;
+           if (enddelay < 0)
+           {
+                P1.transform.position = new Vector3(-2f, -1.599f, -3f);
+                P2.transform.position = new Vector3(2f, -1.599f, -3f);
+                rb.constraints = RigidbodyConstraints2D.FreezePosition;
+                Time.timeScale = 1;
+                Ball.transform.position = prepos;
+           }
+        }
         if (delay > 0&&enddelay<0)
         {   
             if (score1 > maxscore)
@@ -88,29 +90,28 @@ public class Playscenemanager : MonoBehaviour {
     {
         if (c.gameObject.tag == "Ball")
         {
-            //Time.timeScale = 0.5f;
-            //enddelay = 0.5f;
+            Time.timeScale = 0.2f;
+            enddelay = 0.4f;
             delay = 2;
             //rb.velocity = Vector3.zero;
             Debug.Log(c.gameObject);
             if (c.gameObject.transform.position.x < 0)
             {
                 score2++;
-                Ball.transform.position = new Vector3(-1.9f, 1f, -0.5f);
-                prepos = new Vector3(-2, 2, -0.5f);
+                //Ball.transform.position = new Vector3(-1.9f, 1f, -0.5f);
+                prepos = new Vector3(-1.9f, 1f, -0.5f);
             }
             else
             {
                 score1++;
-                Ball.transform.position = new Vector3(1.9f, 1f, -0.5f);
-                prepos = new Vector3(2, 2, -0.5f);
+                //Ball.transform.position = new Vector3(1.9f, 1f, -0.5f);
+                prepos = new Vector3(1.9f, 1f, -0.5f);
 
             }
-            rb.constraints = RigidbodyConstraints2D.FreezePosition;
+            //rb.constraints = RigidbodyConstraints2D.FreezePosition;
             //Destroy(Ball);
             //Ball = GameObject.Instantiate(Resources.Load("Prefabs/Ball") as GameObject, prepos,transform.rotation);
-            P1.transform.position = new Vector3(-2f, -1.599f, -3f);
-            P2.transform.position = new Vector3(2f, -1.599f, -3f);
+            
         }
             
      
