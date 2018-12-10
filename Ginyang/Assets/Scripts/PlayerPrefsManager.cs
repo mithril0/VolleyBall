@@ -41,6 +41,7 @@ public class PlayerPrefsManager : MonoBehaviour {
     }
     public void SaveAndLoadScene(string name)
     {
+        Time.timeScale = 1;
         PlayerPrefsManager.SetMasterVolume(volumeSlider.value);
         SceneManager.LoadScene(name);
     }
