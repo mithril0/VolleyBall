@@ -43,7 +43,7 @@ public class CharacterMovement : MonoBehaviour {
 
 		while(transform.position.y >= ground) {
 			float y = transform.position.y + f * Time.deltaTime;
-			f -= g;
+			f -= g * 60 * Time.deltaTime;
 
 			transform.Translate((Mathf.Max(y, ground) - transform.position.y) * Vector3.up);
 
