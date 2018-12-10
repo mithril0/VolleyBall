@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ChooseSceneManager : MonoBehaviour {
+    const string First_Pick_Key = "1Player";
+    const string Second_Pick_Key = "2Player";
+
     public int first;
     public bool pick1=false;
     public bool pick2=false;
@@ -20,6 +23,8 @@ public class ChooseSceneManager : MonoBehaviour {
     private GameObject temp;
     public Animator test;
     private AudioSource source;
+    public PlayerPrefsManager PP;
+    public float Scenemovedelay = -1;
 
     // Use this for initialization
     void Start () {
@@ -39,11 +44,21 @@ public class ChooseSceneManager : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
+        if (pick1 && pick2 && Scenemovedelay < 0) Scenemovedelay = 2;
+        if (Scenemovedelay > 0)
+        {
+            Scenemovedelay -= Time.deltaTime;
+            if (Scenemovedelay < 0)
+            {
+                PP.SaveAndLoadScene("Play");
+            }
+        }
         if (Input.GetKeyDown(KeyCode.Space))
         {
             if (pick1 == false)
             {
                 pick1 = true;
+                PlayerPrefs.SetInt(First_Pick_Key, first);
                 test = P1.transform.GetChild(first - 1).GetComponent<Animator>();
                 test.SetTrigger("pick");
                 source.Play(0);
@@ -54,6 +69,7 @@ public class ChooseSceneManager : MonoBehaviour {
         {
             if (pick2 == false)
             {
+                PlayerPrefs.SetInt(Second_Pick_Key, second);
                 pick2 = true;
                 source.Play(0);
                 P2.transform.GetChild(second - 1).GetComponent<Animator>().SetTrigger("pick");

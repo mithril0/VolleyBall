@@ -14,6 +14,7 @@ public class Ball : MonoBehaviour {
         source = GetComponent<AudioSource>();
     }
     void OnCollisionEnter2D (Collision2D c) {
+        //if(c.collider.tag)
         colliding++;
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
         if (c.collider.tag == "Player" && c.transform.position.y > -1)

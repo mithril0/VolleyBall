@@ -10,6 +10,10 @@ public class PlayerPrefsManager : MonoBehaviour {
     const string HIGH_SCORE = "High Score";
     void Start()
     {
+        if (PlayerPrefs.HasKey(MASTER_VOLUME_KEY) == false)
+        {
+            PlayerPrefs.SetFloat("master_volume", 0.5f);
+        }
         //musicManager = GameObject.FindObjectOfType<MusicManager>();
 
         volumeSlider.value = PlayerPrefsManager.GetMasterVolume();
@@ -28,7 +32,7 @@ public class PlayerPrefsManager : MonoBehaviour {
 
     public static float GetMasterVolume()
     {
-        return PlayerPrefs.GetFloat(MASTER_VOLUME_KEY);
+        return PlayerPrefs.GetFloat(MASTER_VOLUME_KEY);   
     }
 
     public static void SetHighScore(int score)

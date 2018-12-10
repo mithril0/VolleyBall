@@ -5,7 +5,6 @@ using UnityEngine;
 public class Arrow : MonoBehaviour {
     public GameObject ball;
     public GameObject child;
-
     private const float arrowHeight = 2.2f;
     private const float ballHeight = 2.9f;
 
@@ -16,6 +15,7 @@ public class Arrow : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        //ball = GameObject.Find("Ball");
         gameObject.transform.position = new Vector3(ball.transform.position.x, arrowHeight,-1);
         if (ball.transform.position.y > ballHeight)
         {

@@ -16,11 +16,13 @@ public class OptionButton : MonoBehaviour {
 	}
     public void OptionClicked()
     {
+        Time.timeScale = 0;
         Idle.SetActive(false);
         Option.SetActive(true);
     }
     public void GobackGame()
     {
+        Time.timeScale = 1;
         Idle.SetActive(true);
         Option.SetActive(false);
     }
