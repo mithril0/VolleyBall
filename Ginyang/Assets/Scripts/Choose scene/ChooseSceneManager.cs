@@ -25,6 +25,8 @@ public class ChooseSceneManager : MonoBehaviour {
     private AudioSource source;
     public PlayerPrefsManager PP;
     public float Scenemovedelay = -1;
+    public AudioSource change;
+    public AudioSource end;
 
     // Use this for initialization
     void Start () {
@@ -44,7 +46,7 @@ public class ChooseSceneManager : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        if (pick1 && pick2 && Scenemovedelay < 0) Scenemovedelay = 2;
+        if (pick1 && pick2 && Scenemovedelay < 0) { Scenemovedelay = 3; end.PlayDelayed(0.5f); }
         if (Scenemovedelay > 0)
         {
             Scenemovedelay -= Time.deltaTime;
@@ -88,14 +90,14 @@ public class ChooseSceneManager : MonoBehaviour {
         }
         if (pick1 == false)
         {
-            if (Input.GetKeyDown(KeyCode.A)) first -= 1;
-            else if (Input.GetKeyDown(KeyCode.D)) first += 1;
+            if (Input.GetKeyDown(KeyCode.A)) { first -= 1; change.Play(); }
+            else if (Input.GetKeyDown(KeyCode.D)) {first += 1; change.Play(); }
             if (first > 3) first -= 3; if (first < 1) first += 3;
         }
         if (pick2 == false)
         {
-            if (Input.GetKeyDown(KeyCode.LeftArrow)) second -= 1;
-            else if (Input.GetKeyDown(KeyCode.RightArrow)) second += 1;
+            if (Input.GetKeyDown(KeyCode.LeftArrow)) { second -= 1; change.Play(); }
+            else if (Input.GetKeyDown(KeyCode.RightArrow)) {second += 1; change.Play(); }
             if (second > 3) second -= 3; if (second < 1) second += 3;
         }
         Cat.First = Cat.Second = Kai.First = Kai.Second = Pho.First = Pho.Second = p1.cat = p1.pho = p1.kai = p2.cat = p2.kai =p2.pho= false;

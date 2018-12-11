@@ -130,8 +130,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.7}
-  m_Size: {x: 1.1, y: 1.5}
+  m_Offset: {x: 0, y: -0.4}
+  m_Size: {x: 1, y: 1}
   m_Direction: 0
 --- !u!95 &95911673105710046
 Animator:
@@ -165,8 +165,8 @@ MonoBehaviour:
   leftKey: 276
   rightKey: 275
   jumpKey: 273
-  leftlimit: 5
-  rightlimit: 0.7
+  leftlimit: 0.7
+  rightlimit: 5
 --- !u!114 &114980545074530748
 MonoBehaviour:
   m_ObjectHideFlags: 1
