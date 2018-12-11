@@ -7,6 +7,8 @@ public class Ball : MonoBehaviour {
     public int colliding=0;
     public float colldown = 0;
     public int player = 0;
+    //public GameObject P1;
+    //ublic GameObject P2;
     // Use this for initialization
     private void Start()
     {
@@ -17,8 +19,23 @@ public class Ball : MonoBehaviour {
         //if(c.collider.tag)
         colliding++;
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
-        if (c.collider.tag == "Player" && c.transform.position.y > -1)
+        if (c.collider.tag == "Player") //&& c.transform.position.y > -1)
         {
+            if (c.gameObject.GetComponent<Animator>().GetInteger("State") == 3)
+            {
+                if (c.transform.position.x > 0)
+                {
+                    rb.AddForce(new Vector3(-1f, -0.5f, 0) * 600);
+                }
+                else
+                {
+                    rb.AddForce(new Vector3(1f, -0.5f, 0) * 600);
+                }
+            }
+            else
+            {
+                rb.AddForce(c.contacts[0].normal * 400);
+            }
             /*if(c.transform.position.x > 0)
             {
                 rb.AddForce(new Vector3(-1f,-0.5f,0) * 500);
@@ -27,7 +44,7 @@ public class Ball : MonoBehaviour {
             {
                 rb.AddForce(new Vector3(1f, -0.5f, 0) * 500);
             }*/
-            rb.AddForce(c.contacts[0].normal * 600);
+            
             //player++;
         }
         else

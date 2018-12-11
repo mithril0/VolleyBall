@@ -24,6 +24,9 @@ public class Playscenemanager : MonoBehaviour {
     public Rigidbody2D rb;
     public PlayerPrefsManager PP;
     public Animator Ready;
+    public AudioSource Bgm;
+    public AudioSource win;
+    public bool playwin = true;
 
     // Use this for initialization
     void Start () {
@@ -59,12 +62,24 @@ public class Playscenemanager : MonoBehaviour {
             {
                 sp1.sprite = Resources.Load<Sprite>("main_ui/win");
                 sp2.sprite = Resources.Load<Sprite>("main_ui/lose");
+                Bgm.Stop();
+                if (playwin)
+                {
+                    win.Play();playwin = false;
+                    delay += 2;
+                }
 
             }
             else if (score2 > maxscore)
             {
                 sp1.sprite = Resources.Load<Sprite>("main_ui/lose");
                 sp2.sprite = Resources.Load<Sprite>("main_ui/win");
+                Bgm.Stop();
+                if (playwin)
+                {
+                    win.Play(); playwin = false;
+                    delay += 2;
+                }
             }
             else
             {
