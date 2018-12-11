@@ -9,7 +9,7 @@ public class Playscenemanager : MonoBehaviour {
     //const string First_Pick_Key = "1Player";
     //const string Second_Pick_Key = "2Player";
     public int score2;
-    public float delay = 3;
+    public float delay = 10;
     public float enddelay = -1;
     public int maxscore=15;
     public Text t1;
