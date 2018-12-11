@@ -619,9 +619,9 @@ PlayerSettings:
     UNet: 1
   facebookSdkVersion: 7.9.4
   apiCompatibilityLevel: 2
-  cloudProjectId: b933cba3-7bf1-4f4e-b440-4fb2d952223c
+  cloudProjectId: bba080b4-96c0-4e1f-8ab3-e01256decbfc
   projectName: New Unity Project
-  organizationId: polariche_unity
+  organizationId: hsj5880
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
   disableOldInputManagerSupport: 0
