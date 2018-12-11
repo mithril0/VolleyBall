@@ -7,7 +7,11 @@ public class CharacterMovement : MonoBehaviour {
 	public float speed = 5;
 	public float jumpSpeed = 15;
 
+	public float leftLimit;
+    public float rightLimit;
+
 	private bool isJumping;
+	private bool isSmashing;
 	private float ground;
 	private Animator ani;
 	private float pos_x;
@@ -22,14 +26,33 @@ public class CharacterMovement : MonoBehaviour {
 	}
 
 	void Update() {
-		if(ani.GetInteger("State") == 1 && pos_x != transform.position.x)
-			ani.SetInteger("State", 0);
+		if(!isJumping && !isSmashing) {
+			if (pos_x != transform.position.x)
+				ani.SetInteger("State", 1);
+			else
+				ani.SetInteger("State", 0);
+		}
+
 		pos_x = transform.position.x;
 	}
 	
 	public void Move(Vector3 dir) {
-		transform.Translate(transform.InverseTransformDirection(dir) * speed * Time.deltaTime);
-		ani.SetInteger("State", 1);
+		if ((dir.x < 0 && pos_x > leftLimit) || (dir.x > 0 && pos_x < rightLimit)) 
+			transform.Translate(transform.InverseTransformDirection(dir) * speed * Time.deltaTime);
+	}
+
+	IEnumerator Smash () {
+		if (isSmashing == true)
+			yield break;
+
+		isSmashing = true;
+		ani.SetInteger("State", 3);
+
+		for(int i=0;i<3;i++)
+			yield return null;
+
+		isSmashing = false;
+		ani.SetInteger("State", 0);
 	}
 
 	IEnumerator Jump () {
@@ -37,7 +60,7 @@ public class CharacterMovement : MonoBehaviour {
 			yield break;
 
 		isJumping = true;
-		ani.SetInteger("State", 2);
+		ani.SetInteger("State", 2); 
 
 		float f = jumpSpeed;
 
@@ -53,7 +76,7 @@ public class CharacterMovement : MonoBehaviour {
 			yield return null;
 		}
 
-		ani.SetInteger("State", 0);
 		isJumping = false;
+		ani.SetInteger("State", 0); 
 	}
 }

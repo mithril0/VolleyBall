@@ -165,8 +165,6 @@ MonoBehaviour:
   leftKey: 97
   rightKey: 100
   jumpKey: 119
-  leftlimit: -0.5
-  rightlimit: -4.8
 --- !u!114 &114816601152657788
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -180,6 +178,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   jumpSpeed: 22
+  leftLimit: -4.8
+  rightLimit: -0.7
 --- !u!212 &212614548440838266
 SpriteRenderer:
   m_ObjectHideFlags: 1
