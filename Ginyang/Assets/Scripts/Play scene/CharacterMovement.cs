@@ -15,6 +15,7 @@ public class CharacterMovement : MonoBehaviour {
 	private float ground;
 	private Animator ani;
 	private float pos_x;
+	private float speed_y;
 
 	const float g = 2f;
 
@@ -48,7 +49,7 @@ public class CharacterMovement : MonoBehaviour {
 		isSmashing = true;
 		ani.SetInteger("State", 3);
 
-		for(int i=0;i<3;i++)
+		for(int i=0;i<30;i++)
 			yield return null;
 
 		isSmashing = false;
@@ -62,15 +63,21 @@ public class CharacterMovement : MonoBehaviour {
 		isJumping = true;
 		ani.SetInteger("State", 2); 
 
-		float f = jumpSpeed;
+		speed_y = jumpSpeed;
 
 		while(transform.position.y >= ground) {
-			float y = transform.position.y + f * Time.deltaTime;
-			f -= g * 60 * Time.deltaTime;
+			float y = transform.position.y + speed_y * Time.deltaTime;
+			
+			if (!isSmashing || speed_y > 0)
+				speed_y -= g * 60 * Time.deltaTime;
+			else
+				speed_y -= g / 10 * 60 * Time.deltaTime;
+
+			Debug.Log(speed_y);
 
 			transform.Translate((Mathf.Max(y, ground) - transform.position.y) * Vector3.up);
 
-			if(y < ground)
+			if(y <= ground)
 				break;
 
 			yield return null;
